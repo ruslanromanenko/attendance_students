@@ -1,0 +1,14 @@
+@use "variables" as var;
+@use "colors";
+
+/* Common styles start */
+
+.mainContainer {
+  max-width: var.$mainContainerWidth;
+  width: 100%;
+  height: 100%;
+  padding: 0 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

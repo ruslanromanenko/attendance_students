@@ -1,0 +1,14 @@
+{
+  "src/**/*.{ts,tsx,js,jsx,json}": [
+    "npm run prettier:write",
+    "npm run eslint:check",
+    "npm run eslint:fix",
+    "bash -c tsc",
+  ],
+
+  "src/**/*.{css,scss,yml,html,md}": [
+      "npm run prettier:write"
+  ]
+}
+
+
