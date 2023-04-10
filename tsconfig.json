@@ -23,7 +23,9 @@
       "components/*": ["components/*"],
       "assets/*": ["assets/*"],
       "images/*": ["assets/images/*"],
-      "enum/*": ["enum/*"],
+      // "enums/*": ["types/enums/*"],
+      // "interfaces/*": ["types/interfaces/*"],
+      "utils/*": ["utils/*"],
       "pages/*": ["pages/*"]
     }
   },

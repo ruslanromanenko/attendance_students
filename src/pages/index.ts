@@ -1,3 +1,3 @@
 export { HomePage } from "./HomePage";
-export { SecondPage } from "./SecondPage";
+export { AboutPage } from "./AboutPage";
 export { NotFoundPage } from "./NotFoundPage";

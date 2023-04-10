@@ -1,16 +1,16 @@
 import React from "react";
 import classes from "./HeaderMenu.module.scss";
-import { Link } from "react-router-dom";
-import { PageRoutes } from "enums/PageRoutes";
+import { NavLink } from "react-router-dom";
+import { PageRoutes } from "types/enums/PageRoutes";
 
 const HeaderMenu = (): JSX.Element => {
   return (
     <ul className={classes.menuWrap}>
       <li>
-        <Link to={PageRoutes.Home}>Home</Link>
+        <NavLink to={PageRoutes.Home}>Home</NavLink>
       </li>
       <li>
-        <Link to={PageRoutes.Second}>About</Link>
+        <NavLink to={PageRoutes.About}>About</NavLink>
       </li>
     </ul>
   );

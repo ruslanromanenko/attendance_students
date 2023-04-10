@@ -1,5 +1,5 @@
 export enum PageRoutes {
   Home = "/",
-  Second = "/second",
+  About = "/about",
   NotFound = "*",
 }

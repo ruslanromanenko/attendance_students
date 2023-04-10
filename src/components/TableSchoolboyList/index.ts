@@ -1,0 +1,1 @@
+export { TableSchoolboyList } from "./TableSchoolboyList";

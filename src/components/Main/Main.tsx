@@ -1,8 +1,8 @@
 import React from "react";
 import classes from "./Main.module.scss";
-import { HomePage, SecondPage, NotFoundPage } from "pages";
+import { HomePage, AboutPage, NotFoundPage } from "pages";
 import { Routes, Route } from "react-router-dom";
-import { PageRoutes } from "enums/PageRoutes";
+import { PageRoutes } from "types/enums/PageRoutes";
 
 const Main = (): JSX.Element => {
   return (
@@ -11,7 +11,7 @@ const Main = (): JSX.Element => {
         {
           <Routes>
             <Route path={PageRoutes.Home} element={<HomePage />} />
-            <Route path={PageRoutes.Second} element={<SecondPage />} />
+            <Route path={PageRoutes.About} element={<AboutPage />} />
             <Route path={PageRoutes.NotFound} element={<NotFoundPage />} />
           </Routes>
         }

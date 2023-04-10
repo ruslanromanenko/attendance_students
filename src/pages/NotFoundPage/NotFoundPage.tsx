@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { PageRoutes } from "enums/PageRoutes";
+import { PageRoutes } from "types/enums/PageRoutes";
 import classes from "./NotFoundPage.module.scss";
 
 export const NotFoundPage = (): JSX.Element => {

@@ -12,6 +12,11 @@ ul.menuWrap {
     a {
       color: black;
       text-decoration: none;
+
+      &:global(.active) {
+        text-decoration: underline !important;
+        color: rgb(58, 61, 207);
+      }
     }
   }
 }
