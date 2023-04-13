@@ -19,42 +19,62 @@ export const HomePage = (): JSX.Element => {
   const [lessonColumns, setLessonColumns] = useState<ILessonColumns>();
   const [classVisits, setClassVisits] = useState<IClassVisits>();
   const [isPreloader, setIsPreloader] = useState<boolean>(true);
+  const [isErrorApi, setIsErrorApi] = useState<boolean>(false);
 
   const dispatch = useAppDispatch();
   const { setSchoolboyQuantity, setColumnWithMaxSumOfTitle } =
     mainSlise.actions;
 
   useEffect(() => {
-    const fetchSchoolboyList = fetchJsonData(
+    const fetchSchoolboyList = fetchJsonData<ISchoolboyList>(
       BASE_URL + ApiSettings.Schoolboy
-    ).then((result: ISchoolboyList) => {
-      setSchoolboyList(result);
-      dispatch(setSchoolboyQuantity(result.Quantity));
-    });
+    ).then((result) => {
+      console.log(typeof result);
 
-    const fetchLessonColumns = fetchJsonData(
-      BASE_URL + ApiSettings.Column
-    ).then((result: ILessonColumns) => {
-      dispatch(
-        setColumnWithMaxSumOfTitle(getColumnWithMaxSumOfTitle(result.Items))
-      );
-
-      setLessonColumns(result);
-    });
-
-    const fetchClassVisits = fetchJsonData(BASE_URL + ApiSettings.Rate).then(
-      (result) => {
-        setClassVisits(result);
+      if (typeof result === "object") {
+        setSchoolboyList(result);
+        dispatch(setSchoolboyQuantity(result.Quantity));
+      } else if (!result) {
+        setIsErrorApi(true);
       }
-    );
+    });
+
+    const fetchLessonColumns = fetchJsonData<ILessonColumns>(
+      BASE_URL + ApiSettings.Column
+    ).then((result) => {
+      if (typeof result === "object") {
+        dispatch(
+          setColumnWithMaxSumOfTitle(getColumnWithMaxSumOfTitle(result.Items))
+        );
+
+        setLessonColumns(result);
+      } else if (!result) {
+        setIsErrorApi(true);
+      }
+    });
+
+    const fetchClassVisits = fetchJsonData<IClassVisits>(
+      BASE_URL + ApiSettings.Rate
+    ).then((result) => {
+      if (typeof result === "object") {
+        setClassVisits(result);
+      } else if (!result) {
+        setIsErrorApi(true);
+      }
+    });
 
     void Promise.all([
       fetchSchoolboyList,
       fetchLessonColumns,
       fetchClassVisits,
-    ]).then(() => {
-      setIsPreloader(false);
-    });
+    ]).then(
+      (value) => {
+        setIsPreloader(false);
+      },
+      (reason) => {
+        console.error(reason);
+      }
+    );
   }, []);
 
   const handleClickTableCell = (
@@ -69,20 +89,29 @@ export const HomePage = (): JSX.Element => {
       }`,
       classVisitsItem
     ).then((result) => {
-      void fetchJsonData(BASE_URL + ApiSettings.Rate).then((result) => {
-        setClassVisits(result);
-      });
+      void fetchJsonData<IClassVisits>(BASE_URL + ApiSettings.Rate).then(
+        (result) => {
+          if (typeof result === "object") {
+            setClassVisits(result);
+          } else if (!result) {
+            setIsErrorApi(true);
+          }
+        }
+      );
     });
   };
 
-  return isPreloader ? (
-    <CircularProgress />
-  ) : (
-    <TableSchoolboyList
-      schoolboyList={schoolboyList?.Items}
-      lessonColumns={lessonColumns?.Items}
-      classVisits={classVisits?.Items}
-      onClickTableCell={handleClickTableCell}
-    />
-  );
+  const RenderContent = (isError: boolean): JSX.Element =>
+    isError ? (
+      <h2>Response Error!</h2>
+    ) : (
+      <TableSchoolboyList
+        schoolboyList={schoolboyList?.Items}
+        lessonColumns={lessonColumns?.Items}
+        classVisits={classVisits?.Items}
+        onClickTableCell={handleClickTableCell}
+      />
+    );
+
+  return isPreloader ? <CircularProgress /> : RenderContent(isErrorApi);
 };

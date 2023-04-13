@@ -1,4 +1,4 @@
-export async function fetchJsonData(url: string): Promise<any> {
+export async function fetchJsonData<T>(url: string): Promise<T | boolean> {
   try {
     const response = await fetch(url);
 
@@ -14,7 +14,10 @@ export async function fetchJsonData(url: string): Promise<any> {
   }
 }
 
-export async function postHTTP<T>(url: string, body: T): Promise<any> {
+export async function postHTTP<T>(
+  url: string,
+  body: T
+): Promise<Response | boolean> {
   try {
     const response = await fetch(url, {
       method: "POST",
