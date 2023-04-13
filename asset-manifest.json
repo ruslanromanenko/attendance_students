@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "https://ruslanromanenko.github.io/attendance_students/static/css/main.75614d3e.css",
-    "main.js": "https://ruslanromanenko.github.io/attendance_students/static/js/main.a0f8809d.js",
+    "main.js": "https://ruslanromanenko.github.io/attendance_students/static/js/main.b34fa365.js",
     "index.html": "https://ruslanromanenko.github.io/attendance_students/index.html",
     "main.75614d3e.css.map": "https://ruslanromanenko.github.io/attendance_students/static/css/main.75614d3e.css.map",
-    "main.a0f8809d.js.map": "https://ruslanromanenko.github.io/attendance_students/static/js/main.a0f8809d.js.map"
+    "main.b34fa365.js.map": "https://ruslanromanenko.github.io/attendance_students/static/js/main.b34fa365.js.map"
   },
   "entrypoints": [
     "static/css/main.75614d3e.css",
-    "static/js/main.a0f8809d.js"
+    "static/js/main.b34fa365.js"
   ]
 }
